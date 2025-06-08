@@ -253,3 +253,59 @@ option {
     }
 
 }
+
+
+@media (max-width: 768px) {
+    .main-section {
+      margin: 25px 20px 25px 20px;
+    }
+
+    #eastings {
+      width: 140px;
+      height: 45px;
+      font-size: 18px;
+    }
+
+    #northings {
+      width: 140px;
+      height: 45px;
+      font-size: 18px;
+    }
+
+    #result-one {
+      width: 140px;
+      height: 45px;
+      font-size: 18px;
+    }
+
+    #result-two {
+      width: 140px;
+      height: 45px;
+      font-size: 18px;
+    }
+
+    #label_one_e {
+    width: 144px;
+    height: 27.5px;    
+    }
+
+    #label_one_n {
+    width: 144px;
+    height: 27.5px;
+    }
+
+    #label_two_e {
+    width: 144px;
+    height: 27.5px;
+    }
+
+    #label_two_n {
+    width: 144px;
+    height: 27.5px;
+    }
+
+    h1 {
+        font-size: 25px;
+    }
+
+}
