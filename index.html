@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ARC1960 to WGS84 Converter</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.15.0/proj4.js"></script>
+    
+    <link href="main.css" rel="stylesheet">
+</head>
+<main>
+ <body>
+    <div class="main-section">
+     <h1>Coordinate Systems Conversion Application</h1>
+     <div class="selection-elements">
+       <p>FROM:</p>
+       <select id="selection-list-one" onclick="updateLabels()">
+        <option value="EPSG:21096">ARC1960 UTM ZONE 36N</option>
+        <option value="EPSG:21036">ARC1960 UTM ZONE 36S</option>
+        <option value="EPSG:32636">ITRF2005 UTM ZONE 36N</option>
+        <option value="EPSG:32736">ITRF2005 UTM ZONE 36S </option>
+        <option value="EPSG:4326">GCSWGS84</option>
+       </select>
+      </div>
+     <div class="input-tags">
+        <div class="input-tag"> 
+          <input id="eastings"><div id="label_one_e"><label id="label_one" for="eastings">Eastings</label></div></input>
+        </div>
+        <div class="input-tag">
+          <input id="northings"><div id="label_one_n"><label id="label_two" for="northings">Northings</label></div></input>
+        </div>
+     </div>
+     <button onclick="conversionFunc()">Convert</button>
+     <div class="selection-elements">
+      <div class="selection-element">
+       <p>TO:</p>
+      </div>
+      <div class="selection-element">
+       <select id="selection-list-two" onclick="updateLabels()">
+        <option value="EPSG:21096" class="item">ARC1960 UTM ZONE 36N</option>
+        <option value="EPSG:21036">ARC1960 UTM ZONE 36S</option>
+        <option value="EPSG:32636">ITRF2005 UTM ZONE 36N</option>
+        <option value="EPSG:32736">ITRF2005 UTM ZONE 36S </option>
+        <option value="EPSG:4326">GCSWGS84</option>
+       </select>
+      </div>
+    </div>
+     <div class="input-tags">
+      <div class="input-tag">
+        <input id="result-one"><div id="label_two_e"><label id="label_three" for="result-one">Eastings</label></div></input>
+      </div>
+      <div class="input-tag">
+        <input id="result-two"><div id="label_two_n"><label id="label_four" for="result-two">Northings</label></div></input>
+      </div>
+     </div>
+    </div>
+ </body>
+ <script>
+
+//Defining Arc1960 UTM Zone 36N
+proj4.defs("EPSG:21096", "+proj=utm +zone=36 +ellps=clrk80 +towgs84=-160,-6,-302,0,0,0,0 +units=m +nodefs");
+
+//Defining Arc1960 UTM Zone 36S
+proj4.defs("EPSG:21036", "+proj=utm +zone=36 +south +ellps=clrk80 +towgs84=-160,-6,-302,0,0,0,0 +units=m +no_defs");
+
+//Defining WGS84
+proj4.defs("EPSG:4326", "+proj=longlat +datum=WGS84 +nodefs");
+
+// Defining WGS84 UTM Zone 36 N
+proj4.defs("EPSG:32636", "+proj=utm +zone=36 +datum=WGS84 +units=m +nodefs");
+
+// Defining WGS84 UTM Zone 36 S
+proj4.defs("EPSG:32736", "+proj=utm +zone=36 +south +datum=WGS84 +units=m +nodefs");
+
+
+
+
+
+
+function updateLabels() {
+const fromCRS = document.getElementById('selection-list-one').value;
+const toCRS = document.getElementById('selection-list-two').value;
+const xlabel = document.getElementById('label_one');
+const ylabel = document.getElementById('label_two');
+const x_label = document.getElementById('label_three');
+const y_label = document.getElementById('label_four');
+    if (fromCRS === "EPSG:4326") {
+      xlabel.innerText = "Longitude";
+      ylabel.innerText = "Latitude";
+    }
+
+    else if (toCRS === "EPSG:4326") {
+      x_label.innerText = "Longitude";
+      y_label.innerText = "Latitude";
+    }
+
+    else {
+      xlabel.innerText = "Eastings";
+      ylabel.innerText = "Northings";
+      x_label.innerText = "Eastings";
+      y_label.innerText = "Northings";
+    }
+
+  }
+
+
+    function conversionFunc() {
+      const fromCRS = document.getElementById('selection-list-one').value;
+      const toCRS = document.getElementById('selection-list-two').value;
+      const x = parseFloat(document.getElementById('eastings').value);
+      const y = parseFloat(document.getElementById('northings').value);
+
+
+// Arc1960 UTM ZONE 36 N TO ITRF2005 UTM ZONE 36N
+       if (isNaN(x) || isNaN(y)) {
+        document.getElementById('result-one').value = "Invalid Entry";
+        document.getElementById('result-two').value = "Invalid Entry";
+       }
+       
+       else if (fromCRS === "EPSG:21096" && toCRS === "EPSG:32636") {
+        const x = parseFloat(document.getElementById('eastings').value);
+        const y = parseFloat(document.getElementById('northings').value);
+        const[x_result, y_result] = proj4(fromCRS, toCRS, [x, y]);
+       document.getElementById('result-one').value = x_result;
+       document.getElementById('result-two').value = y_result;
+      }
+// Arc1960 UTM ZONE 36 S TO ITRF2005 UTM ZONE 36S
+      else if (fromCRS === "EPSG:21036" && toCRS === "EPSG:32736") {
+        const x = parseFloat(document.getElementById('eastings').value);
+        const y = parseFloat(document.getElementById('northings').value);
+        const [x_result, y_result] = proj4(fromCRS, toCRS, [x, y])
+        document.getElementById('result-one').value = x_result;
+        document.getElementById('result-two').value = y_result;
+      }
+// GCSWGS84 TO Arc1960 UTM ZONE 36N
+      else if (fromCRS === "EPSG:4326" && toCRS === "EPSG:21096") {
+        const x = parseFloat(document.getElementById('eastings').value);
+        const y = parseFloat(document.getElementById('northings').value);
+        const [x_result, y_result] = proj4(fromCRS, toCRS, [x, y]);
+        document.getElementById('result-one').value = x_result;
+        document.getElementById('result-two').value = y_result;
+      }
+// GCSWGS84 TO Arc1960 UTM ZONE 36S
+      else if (fromCRS === "EPSG:4326" && toCRS === "EPSG:21036") {
+        const x = parseFloat(document.getElementById('eastings').value);
+        const y = parseFloat(document.getElementById('northings').value);
+        const [x_result, y_result] = proj4(fromCRS, toCRS, [x, y]);
+        document.getElementById('result-one').value = x_result;
+        document.getElementById('result-two').value = y_result;
+      }
+// GCSWGS84 TO ITRF2005_36N
+      else if (fromCRS === "EPSG:4326" && toCRS === "ITRF2005_36N") {
+        const x = parseFloat(document.getElementById('eastings').value);
+        const y = parseFloat(document.getElementById('northings').value);
+        const [x_result, y_result] = proj4(fromCRS, toCRS, [x, y]);
+        document.getElementById('result-one').value = x_result;
+        document.getElementById('result-two').value = y_result;
+      }
+// GCSWGS84 TO ITRF2005_36S
+      else if (fromCRS === "EPSG:4326" && toCRS === "ITRF2005_36S") {
+        const x = parseFloat(document.getElementById('eastings').value);
+        const y = parseFloat(document.getElementById('northings').value);
+        const [x_result, y_result] = proj4(fromCRS, toCRS, [x, y]);
+        document.getElementById('result-one').value = x_result;
+        document.getElementById('result-two').value = y_result;
+      }
+// ITRF2005_36N TO ARC1960 UTM ZONE 36N
+      else if (fromCRS === "EPSG:32636" && toCRS === "EPSG:21096") {
+        const x = parseFloat(document.getElementById('eastings').value);
+        const y = parseFloat(document.getElementById('northings').value);
+        const [x_result, y_result] = proj4(fromCRS, toCRS, [x, y]);
+        document.getElementById('result-one').value = x_result;
+        document.getElementById('result-two').value = y_result;
+      }
+// ITRF2005_36S TO ARC1960 UTM ZONE 36S
+      else if (fromCRS === "EPSG:32736" && toCRS === "EPSG:21036") {
+        const x = parseFloat(document.getElementById('eastings').value);
+        const y = parseFloat(document.getElementById('northings').value);
+        const [x_result, y_result] = proj4(fromCRS, toCRS, [x, y]);
+        document.getElementById('result-one').value = x_result;
+        document.getElementById('result-two').value = y_result;
+      }
+// ITRF2005_36N TO GCSWGS84
+else if (fromCRS === "EPSG:32636" && toCRS === "EPSG:4326") {
+        const x = parseFloat(document.getElementById('eastings').value);
+        const y = parseFloat(document.getElementById('northings').value);
+        const [x_result, y_result] = proj4(fromCRS, toCRS, [x, y]);
+        document.getElementById('result-one').value = x_result;
+        document.getElementById('result-two').value = y_result;
+      }
+// ITRF2005_36S TO GCSWGS84
+else if (fromCRS === "EPSG:32736" && toCRS === "EPSG:4326") {
+        const x = parseFloat(document.getElementById('eastings').value);
+        const y = parseFloat(document.getElementById('northings').value);
+        const [x_result, y_result] = proj4(fromCRS, toCRS, [x, y]);
+        document.getElementById('result-one').value = x_result;
+        document.getElementById('result-two').value = y_result;
+      }
+// ARC1960 UTM ZONE 36N TO GCSWGS84
+      else if (fromCRS === "EPSG:21096" && toCRS === "EPSG:4326") {
+        const x = parseFloat(document.getElementById('eastings').value);
+        const y = parseFloat(document.getElementById('northings').value);
+        const [x_result, y_result] = proj4(fromCRS, toCRS, [x, y]);
+        document.getElementById('result-one').value = x_result;
+        document.getElementById('result-two').value = y_result;
+      }
+// ARC1960 UTM ZONE 36S TO GCSWGS84
+      else if (fromCRS === "EPSG:21036" && toCRS === "EPSG:4326") {
+        const x = parseFloat(document.getElementById('eastings').value);
+        const y = parseFloat(document.getElementById('northings').value);
+        const [x_result, y_result] = proj4(fromCRS, toCRS, [x, y]);
+        document.getElementById('result-one').value = x_result;
+        document.getElementById('result-two').value = y_result;
+      }
+
+//ARC1960 UTM ZONE 36N TO ARC1960 UTM ZONE 36 S
+      else if (fromCRS === "EPSG:21096" && toCRS === "EPSG:21036") {
+        const x = parseFloat(document.getElementById('eastings').value);
+        const y = parseFloat(document.getElementById('northings').value);
+        const [x_result, y_result] = proj4(fromCRS, toCRS, [x, y]);
+        document.getElementById('result-one').value = x_result;
+        document.getElementById('result-two').value = y_result;
+      }
+
+      //ARC1960 UTM ZONE 36S TO ARC1960 UTM ZONE 36N
+      else if (fromCRS === "EPSG:21036" && toCRS === "EPSG:21096") {
+        const x = parseFloat(document.getElementById('eastings').value);
+        const y = parseFloat(document.getElementById('northings').value);
+        const [x_result, y_result] = proj4(fromCRS, toCRS, [x, y]);
+        document.getElementById('result-one').value = x_result;
+        document.getElementById('result-two').value = y_result;
+      }
+
+      //ITRF2005 UTM ZONE 36N TO ITRF2005 UTM ZONE 36 S
+      else if (fromCRS === "EPSG:32636" && toCRS === "EPSG:32736") {
+        const x = parseFloat(document.getElementById('eastings').value);
+        const y = parseFloat(document.getElementById('northings').value);
+        const [x_result, y_result] = proj4(fromCRS, toCRS, [x, y]);
+        document.getElementById('result-one').value = x_result;
+        document.getElementById('result-two').value = y_result;
+      }
+
+            //ITRF2005 UTM ZONE 36S TO ITRF2005 UTM ZONE 36N
+      else if (fromCRS === "EPSG:32736" && toCRS === "EPSG:32636") {
+        const x = parseFloat(document.getElementById('eastings').value);
+        const y = parseFloat(document.getElementById('northings').value);
+        const [x_result, y_result] = proj4(fromCRS, toCRS, [x, y]);
+        document.getElementById('result-one').value = x_result;
+        document.getElementById('result-two').value = y_result;
+      }
+
+    }
+
+
+
+ </script>
+
+</main>
+</html>
