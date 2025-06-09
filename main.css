@@ -261,14 +261,14 @@ option {
     }
 
     #eastings {
-      width: 200px;
-      height: 50px;
+      width: 145px;
+      height: 45px;
       font-size: 18px;
     }
 
     #northings {
-      width: 200px;
-      height: 50px;
+      width: 145px;
+      height: 45px;
       font-size: 18px;
     }
 
