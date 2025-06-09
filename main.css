@@ -264,13 +264,21 @@ button {
     }
 
     #selection-list-one {
-     width: 200px;
+     width: 250px;
      height: 40px;
+     background-color: white;
+     color: black;
     }
 
      #selection-list-two {
-     width: 200px;
+     width: 250px;
      height: 40px;
+     background-color: white;
+     color: black;
+    }
+
+    .selection-elements {
+     margin-bottom: 25px;   
     }
         
 
