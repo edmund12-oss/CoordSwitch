@@ -261,6 +261,7 @@ button {
     width: 250px;
     height: 60px;
     border-radius: 10px;
+    margin-bottom: 100px;
     }
 
     #selection-list-one {
@@ -279,6 +280,10 @@ button {
 
     .selection-elements {
      margin-bottom: 25px;   
+    }
+
+    .input-tags {
+     margin-bottom: 100px;   
     }
         
 
