@@ -109,10 +109,6 @@ button {
     padding: 0px;
 }
 
-option {
-    background-color: color-mix(in srgb, #c3c3c3, transparent 95%);
-}
-
 #selection-list-one {
     border: 1px solid gray;
     padding: 5px;
@@ -265,6 +261,16 @@ option {
     width: 250px;
     height: 60px;
     border-radius: 10px;
+    }
+
+    #selection-list-one {
+     width: 200px;
+     height: 40px;
+    }
+
+     #selection-list-two {
+     width: 200px;
+     height: 40px;
     }
         
 
