@@ -208,12 +208,16 @@ option {
       width: 250px;
       height: 65px;
       font-size: 26px;
+      border-top-right-radius: 5px;
+      border-top-left-radius: 5px; 
     }
 
     #northings {
       width: 250px;
       height: 65px;
       font-size: 26px;
+      border-top-right-radius: 5px;
+      border-top-left-radius: 5px; 
     }
 
     #result-one {
