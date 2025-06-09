@@ -201,51 +201,55 @@ option {
 
 @media (max-width: 1199px) {
     .main-section {
-      margin: 25px 20px 25px 20px;
+      margin: 50px 20px 25px 20px;
     }
 
     #eastings {
-      width: 200px;
-      height: 55px;
-      font-size: 22px;
+      width: 250px;
+      height: 65px;
+      font-size: 26px;
     }
 
     #northings {
-      width: 200px;
-      height: 55px;
-      font-size: 22px;
+      width: 250px;
+      height: 65px;
+      font-size: 26px;
     }
 
     #result-one {
-      width: 200px;
-      height: 55px;
-      font-size: 22px;
+      width: 250px;
+      height: 65px;
+      font-size: 26px;
     }
 
     #result-two {
-      width: 200px;
-      height: 55px;
-      font-size: 22px;
+      width: 250px;
+      height: 65px;
+      font-size: 26px;
     }
 
     #label_one_e {
-    width: 204.2px;
-    height: 30px;    
+    width: 254.2px;
+    height: 40px;
+    font-size: 26px;
     }
 
     #label_one_n {
-    width: 204.2px;
-    height: 30px;
+    width: 254.2px;
+    height: 40px;
+    font-size: 26px;
     }
 
     #label_two_e {
-    width: 204.2px;
-    height: 30px;
+    width: 254.2px;
+    height: 40px;
+    font-size: 26px;
     }
 
     #label_two_n {
-    width: 204.2px;
-    height: 30px;
+    width: 254.2px;
+    height: 40px;
+    font-size: 26px;
     }
 
     h1 {
