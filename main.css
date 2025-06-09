@@ -229,31 +229,31 @@ option {
     }
 
     #label_one_e {
-    width: 254.2px;
+    width: 260px;
     height: 40px;
-    font-size: 26px;
+    font-size: 25px;
     }
 
     #label_one_n {
-    width: 254.2px;
+    width: 260px;
     height: 40px;
-    font-size: 26px;
+    font-size: 25px;
     }
 
     #label_two_e {
-    width: 254.2px;
+    width: 260px;
     height: 40px;
-    font-size: 26px;
+    font-size: 25px;
     }
 
     #label_two_n {
-    width: 254.2px;
+    width: 260px;
     height: 40px;
-    font-size: 26px;
+    font-size: 25px;
     }
 
     h1 {
-        font-size: 27px;
+        font-size: 30px;
     }
 
 }
