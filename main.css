@@ -198,6 +198,7 @@ button {
 @media (max-width: 1199px) {
     .main-section {
       margin: 50px 50px 0px 50px;
+      background-color: color-mix(in srgb, #c3c3c3, transparent 90%) ;
     }
 
     #eastings {
