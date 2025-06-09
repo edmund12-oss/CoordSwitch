@@ -257,8 +257,15 @@ option {
     }
 
     h1 {
-        font-size: 30px;
+    font-size: 30px;
     }
+
+    button {
+    font-size: 25px;
+    width: 250px;
+    height: 60px;
+    }
+        
 
 }
 
