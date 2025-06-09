@@ -284,6 +284,14 @@ button {
      margin-bottom: 25px;   
     }
 
+    .selection-elements p {
+     font-size: 19px;   
+    }
+
+    .selection-element p {
+     font-size: 19px;   
+    }
+
     .input-tags {
      margin-bottom: 100px;   
     }
