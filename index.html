@@ -166,7 +166,7 @@ const y_label = document.getElementById('label_four');
         document.getElementById('result-two').value = y_result.toFixed(3);
       }
 // GCSWGS84 TO WGS84 UTM_36N
-      else if (fromCRS === "EPSG:4326" && toCRS === "ITRF2005_36N") {
+      else if (fromCRS === "EPSG:4326" && toCRS === "EPSG:32636") {
         const x = parseFloat(document.getElementById('eastings').value);
         const y = parseFloat(document.getElementById('northings').value);
         const [x_result, y_result] = proj4(fromCRS, toCRS, [x, y]);
@@ -174,7 +174,7 @@ const y_label = document.getElementById('label_four');
         document.getElementById('result-two').value = y_result.toFixed(3);
       }
 // GCSWGS84 TO WGS84 UTM_36S
-      else if (fromCRS === "EPSG:4326" && toCRS === "ITRF2005_36S") {
+      else if (fromCRS === "EPSG:4326" && toCRS === "EPSG:32736") {
         const x = parseFloat(document.getElementById('eastings').value);
         const y = parseFloat(document.getElementById('northings').value);
         const [x_result, y_result] = proj4(fromCRS, toCRS, [x, y]);
